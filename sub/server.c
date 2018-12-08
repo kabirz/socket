@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
                 printf("Usage: %s port\n", argv[0]);
                 exit(0);
         }
-        
+
         lfd = socket(AF_INET, SOCK_STREAM, 0);
         if (lfd < 0) {
                 perror("socket error");
@@ -31,7 +31,7 @@ int main(int argc, char const *argv[])
 
         servaddr.sin_family = AF_INET;
         servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-        servaddr.sin_port = htons(12345);
+        servaddr.sin_port = htons(atoi(argv[1]));
 
         if (bind(lfd, (struct sockaddr*)&servaddr, sizeof(servaddr)) < 0) {
                 perror("bind error");
