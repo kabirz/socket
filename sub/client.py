@@ -6,8 +6,7 @@ parser.add_argument('--port', '-p', type=int, help = 'port')
 parser.add_argument('--address', '-i', type=str, help = 'server ip address')
 parser.add_argument('--message', '-m', type=str, help = 'message')
 args = parser.parse_args()
-print(args)
-exit(0)
+
 if args.port == None or args.address ==None:
         print("Usage: %s -i address -p port -m message" % __file__)
         exit(0)

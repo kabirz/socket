@@ -43,6 +43,8 @@ int main(int argc, char const *argv[])
                 goto end;
         }
 
+        printf("server is running\n");
+
         while(1) {
                 clilen = sizeof(cliaddr);
                 cfd = accept(lfd, (struct sockaddr *)&cliaddr, &clilen);
@@ -56,10 +58,12 @@ int main(int argc, char const *argv[])
                         close(lfd);
                         ssize_t n;
                         char buff[1024];
+                        printf("%s is linked\n", inet_ntoa(cliaddr.sin_addr));
                         while((n = read(cfd, buff, 1000)) > 0) {
                                 buff[n] = 0;
                                 printf("%s: %s\n", inet_ntoa(cliaddr.sin_addr), buff);
                         }
+                        printf("%s is unlinked\n", inet_ntoa(cliaddr.sin_addr));
                         exit(0);
                 }
                 close(cfd);
